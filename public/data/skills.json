@@ -1,0 +1,110 @@
+[
+  {
+    "skillId": 1,
+    "skillName": "Web Development Masterclass",
+    "providerName": "Imran Khan",
+    "providerEmail": "imran@skillswap.com",
+    "price": 35,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Learn full-stack web development using HTML, CSS, JavaScript, React, and Node.js. Build responsive, real-world websites from scratch.",
+    "image": "https://i.postimg.cc/Bnw6Dtcp/Devolopment.jpg",
+    "category": "Programming"
+  },
+  {
+    "skillId": 2,
+    "skillName": "Digital Marketing & SEO Strategy",
+    "providerName": "Rashed Ahmed",
+    "providerEmail": "rashed@skillswap.com",
+    "price": 25,
+    "rating": 4.7,
+    "slotsAvailable": 6,
+    "description": "Master digital marketing, SEO, social media ads, and content strategy to grow brands and drive traffic effectively.",
+    "image": "https://i.postimg.cc/QM9Mqs0g/digital-marketing2.jpg",
+    "category": "Marketing"
+  },
+  {
+    "skillId": 3,
+    "skillName": "Graphic Design for Beginners",
+    "providerName": "Nadia Sultana",
+    "providerEmail": "nadia@skillswap.com",
+    "price": 20,
+    "rating": 4.8,
+    "slotsAvailable": 5,
+    "description": "Learn the fundamentals of graphic design using Canva, Illustrator, and Photoshop. Create stunning logos and social media visuals.",
+    "image": "https://i.postimg.cc/DzJzcFBd/Graphic-Desing.jpg",
+    "category": "Design"
+  },
+  {
+    "skillId": 4,
+    "skillName": "Marketing Analytics & Strategy",
+    "providerName": "Tuhin Rahman",
+    "providerEmail": "tuhin@skillswap.com",
+    "price": 30,
+    "rating": 4.6,
+    "slotsAvailable": 3,
+    "description": "Understand data-driven marketing, audience targeting, and ROI measurement to optimize campaigns like a pro.",
+    "image": "https://i.postimg.cc/bvDvR839/marketig.jpg",
+    "category": "Business"
+  },
+  {
+    "skillId": 5,
+    "skillName": "NOVIC Frontend Development Bootcamp",
+    "providerName": "Afsana Karim",
+    "providerEmail": "afsana@skillswap.com",
+    "price": 40,
+    "rating": 4.9,
+    "slotsAvailable": 2,
+    "description": "Hands-on training in frontend web technologies — HTML5, CSS3, Tailwind, and React. Build interactive UI components step-by-step.",
+    "image": "https://i.postimg.cc/CKBK4Ym4/NOVIC.jpg",
+    "category": "Programming"
+  },
+  {
+    "skillId": 6,
+    "skillName": "Photoshop Design Essentials",
+    "providerName": "Farhana Akter",
+    "providerEmail": "farhana@skillswap.com",
+    "price": 18,
+    "rating": 4.7,
+    "slotsAvailable": 5,
+    "description": "Learn how to edit photos, create posters, and design digital artworks using Adobe Photoshop tools and techniques.",
+    "image": "https://i.postimg.cc/BvLvCsMY/Photoshop-design.jpg",
+    "category": "Design"
+  },
+  {
+    "skillId": 7,
+    "skillName": "Poster Design & Branding",
+    "providerName": "Rafiul Hasan",
+    "providerEmail": "rafiul@skillswap.com",
+    "price": 22,
+    "rating": 4.8,
+    "slotsAvailable": 3,
+    "description": "Learn how to create professional posters, brand identities, and marketing materials using modern design principles.",
+    "image": "https://i.postimg.cc/7LGLNDmW/post-design.jpg",
+    "category": "Design"
+  },
+  {
+    "skillId": 8,
+    "skillName": "Python Developer Fundamentals",
+    "providerName": "Abir Chowdhury",
+    "providerEmail": "abir@skillswap.com",
+    "price": 28,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Master Python programming for beginners. Learn syntax, OOP, file handling, and automation with hands-on mini projects.",
+    "image": "https://i.postimg.cc/DzJzcFBY/pythondeveloper.jpg",
+    "category": "Programming"
+  },
+  {
+    "skillId": 9,
+    "skillName": "AI & Robotics Basics",
+    "providerName": "Ruhul Amin",
+    "providerEmail": "ruhul@skillswap.com",
+    "price": 45,
+    "rating": 4.9,
+    "slotsAvailable": 2,
+    "description": "Explore the fundamentals of robotics and artificial intelligence. Learn how robots sense, think, and interact with the world.",
+    "image": "https://i.postimg.cc/q7h7G01H/robotic.jpg",
+    "category": "AI & Robotics"
+  }
+]
