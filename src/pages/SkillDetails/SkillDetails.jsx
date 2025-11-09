@@ -9,8 +9,9 @@ const SkillDetails = () => {
     fetch("/data/skills.json")
       .then((res) => res.json())
       .then((data) => {
-        const foundSkill = data.find((item) => item.treeId === parseInt(id));
+        const foundSkill = data.find((item) => item.skillId === parseInt(id));
         setSkill(foundSkill);
+        console.log(foundSkill);
       })
       .catch((err) => console.log(err));
   }, [id]);
@@ -36,7 +37,9 @@ const SkillDetails = () => {
         <h2 className="text-3xl font-semibold text-gray-800 mb-4">
           {skill.commonName}
         </h2>
-        <p className="text-gray-600 leading-relaxed mb-6">{skill.description}</p>
+        <p className="text-gray-600 leading-relaxed mb-6">
+          {skill.description}
+        </p>
         <div className="flex items-center justify-between">
           <span className="text-lg font-medium text-indigo-600">
             Scientific Name: {skill.scientificName}

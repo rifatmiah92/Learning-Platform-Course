@@ -10,9 +10,12 @@ const Home = () => {
 
   useEffect(() => {
     fetch("/skills.json")
-      .then(res => res.json())
-      .then(data => setSkills(data))
-      .catch(err => console.error("failed to load skills", err));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setSkills(data);
+      })
+      .catch((err) => console.error("failed to load skills", err));
   }, []);
 
   const slides = skills.slice(0, 4);
