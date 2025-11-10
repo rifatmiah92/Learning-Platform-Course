@@ -4,6 +4,7 @@ import PopularSkills from "./PopularSkills";
 import HowItWorks from "./HowItWorks";
 import TopProviders from "./TopProviders";
 import Testimonials from "./Testimonials";
+import EnrollForm from "../EnrollForm/EnrollForm";
 
 const Home = () => {
   const [skills, setSkills] = useState([]);
@@ -26,13 +27,15 @@ const Home = () => {
         <HeroSlider slides={slides} />
       </div>
 
-      <PopularSkills skills={skills} />
+      <PopularSkills skills={skills}  />
 
       <TopProviders />
 
       <HowItWorks />
 
       <Testimonials />
+    <EnrollForm></EnrollForm>
+      
     </div>
   );
 };

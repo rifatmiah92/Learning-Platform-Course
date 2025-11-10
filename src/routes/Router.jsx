@@ -9,6 +9,8 @@ import MyProfile from "../pages/MyProfile/MyProfile";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import EnrollForm from "../pages/EnrollForm/EnrollForm"; // Keep this import
+import EnrollmentConfirmation from "../pages/EnrollmentConfirmation/EnrollmentConfirmation";
 
 export const router = createBrowserRouter([
   {
@@ -19,24 +21,27 @@ export const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> },
+
+      {
+        path: "/skill/:id",
+        element: <SkillDetails />,
+      },
+      
+      // NEW ROUTE FOR ENROLLMENT FORM
+      {
+        path: "/enroll/:id",
+        element: <EnrollForm />,
+      },
+      {
+        path: "/enroll-success/:id",
+        element: <EnrollmentConfirmation></EnrollmentConfirmation>,
+      },
+
       {
         path: "/profile",
         element: (
           <PrivateRoute>
             <MyProfile />
-          </PrivateRoute>
-        ),
-      },
-      {
-  path: "/skill/:id",
-  element: <SkillDetails />,
-}
-,
-      {
-        path: "/skills/:id",
-        element: (
-          <PrivateRoute>
-            <SkillDetails />
           </PrivateRoute>
         ),
       },
