@@ -17,12 +17,18 @@ const Navbar = () => {
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition-all"
-        >
-          SkillSwap
-        </Link>
+         <Link
+      to="/"
+      className="flex items-center gap-2 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600"
+    >
+      <motion.div
+        whileHover={{ rotate: -15, scale: 1.15 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        
+      </motion.div>
+      <span>SKILLSWAP</span>
+    </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-6">
