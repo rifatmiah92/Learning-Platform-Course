@@ -9,8 +9,9 @@ import MyProfile from "../pages/MyProfile/MyProfile";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import EnrollForm from "../pages/EnrollForm/EnrollForm"; // Keep this import
+import EnrollForm from "../pages/EnrollForm/EnrollForm";
 import EnrollmentConfirmation from "../pages/EnrollmentConfirmation/EnrollmentConfirmation";
+import AllSkills from "../pages/AllSkills/AllSkills"; // ✅ New import for All Skills page
 
 export const router = createBrowserRouter([
   {
@@ -18,25 +19,37 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
+      // Home Page
       { path: "/", element: <Home /> },
+
+      // Authentication
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> },
+      { path: "/forgot-password", element: <ForgotPassword /> },
 
+      // Skill Details
       {
         path: "/skill/:id",
         element: <SkillDetails />,
       },
-      
-      // NEW ROUTE FOR ENROLLMENT FORM
+
+      // ✅ New Route for showing all skills
+      {
+        path: "/skills",
+        element: <AllSkills />,
+      },
+
+      // Enrollment Pages
       {
         path: "/enroll/:id",
         element: <EnrollForm />,
       },
       {
         path: "/enroll-success/:id",
-        element: <EnrollmentConfirmation></EnrollmentConfirmation>,
+        element: <EnrollmentConfirmation />,
       },
 
+      // Profile (Protected)
       {
         path: "/profile",
         element: (
@@ -45,7 +58,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      { path: "/forgot-password", element: <ForgotPassword /> },
     ],
   },
 ]);

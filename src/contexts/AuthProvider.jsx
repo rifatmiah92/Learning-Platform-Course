@@ -1,5 +1,14 @@
 import React, { createContext, useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
 import auth from "../firebase/firebase.config";
 
 // ✅ Context create করা হচ্ছে
@@ -60,9 +69,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 

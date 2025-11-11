@@ -1,159 +1,174 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { toast } from "react-hot-toast";
-import {
-  FaEye,
-  FaEyeSlash,
-  FaGoogle,
-  FaFacebook,
-  FaGithub,
-} from "react-icons/fa";
-import useAuth from "../../hooks/useAuth";
+import { FaUser, FaLock } from "react-icons/fa"; // Icons for professional touch
 
 const Login = () => {
-  const { logIn, googleLogin, facebookLogin, githubLogin } = useAuth();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [show, setShow] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-
-  const submit = async (e) => {
-    e.preventDefault();
-    if (!email || !password) {
-      return toast.error("Please fill in all fields.");
-    }
-
-    try {
-      await logIn(email, password);
-      toast.success("Welcome back! 👋");
-      navigate(from, { replace: true });
-    } catch (err) {
-      toast.error(err.message || "Login failed");
-    }
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
-  // Social logins
-  const handleSocialLogin = (provider) => async () => {
-    try {
-      await provider();
-      toast.success("Logged in successfully!");
-      navigate(from, { replace: true });
-    } catch (err) {
-      toast.error(err.message || "Login failed");
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // --- Simulation of Login API Call ---
+    console.log("Attempting Login with:", formData);
+
+    setTimeout(() => {
+      alert(`Login successful for: ${formData.email} (Simulated)`);
+      setIsSubmitting(false);
+      // In a real app, you would redirect the user here.
+    }, 1500);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
-      <motion.div
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full max-w-md bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl p-8 rounded-3xl text-white"
-      >
-        <motion.h2
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-3xl font-extrabold text-center mb-6"
-        >
-          Welcome Back! 
-        </motion.h2>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="w-full max-w-sm bg-white p-8 rounded-xl shadow-2xl border border-gray-200">
+        {/* Header */}
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">
+          Welcome Back
+        </h2>
+        <p className="text-center text-gray-500 mb-8">
+          Sign in to access your dashboard.
+        </p>
 
-        <form onSubmit={submit} className="space-y-4">
-          <motion.input
-            whileFocus={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email Address"
-            required
-            className="w-full bg-white/20 border border-white/30 rounded-lg px-4 py-2 placeholder-white focus:ring-2 focus:ring-pink-400 outline-none"
-          />
-
-          {/* Password */}
-          <div className="relative">
-            <motion.input
-              whileFocus={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 200 }}
-              type={show ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              required
-              className="w-full bg-white/20 border border-white/30 rounded-lg px-4 py-2 placeholder-white focus:ring-2 focus:ring-pink-400 outline-none"
-            />
-            <button
-              type="button"
-              onClick={() => setShow((s) => !s)}
-              className="absolute right-3 top-2 text-white/80"
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Email Input */}
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-1"
             >
-              {show ? <FaEyeSlash /> : <FaEye />}
+              Email Address
+            </label>
+            <div className="mt-1 relative rounded-md shadow-sm">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FaUser className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-base"
+                placeholder="you@example.com"
+                disabled={isSubmitting}
+              />
+            </div>
+          </div>
+
+          {/* Password Input */}
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Password
+            </label>
+            <div className="mt-1 relative rounded-md shadow-sm">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FaLock className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-base"
+                placeholder="••••••••"
+                disabled={isSubmitting}
+              />
+            </div>
+          </div>
+
+          {/* Remember Me & Forgot Password */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="rememberMe"
+                name="rememberMe"
+                type="checkbox"
+                checked={formData.rememberMe}
+                onChange={handleChange}
+                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              />
+              <label
+                htmlFor="rememberMe"
+                className="ml-2 block text-sm text-gray-900"
+              >
+                Remember me
+              </label>
+            </div>
+            <a
+              href="#"
+              className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Forgot password?
+            </a>
+          </div>
+
+          {/* Submit Button */}
+          <div>
+            <button
+              type="submit"
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-lg font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              ) : (
+                "Sign In"
+              )}
             </button>
           </div>
-
-          <div className="text-right">
-            <Link
-              to="/forgot-password"
-              // Pass email to forgot password page
-              state={{ email: email }} 
-              className="text-sm text-pink-300 hover:underline font-medium"
-            >
-              Forgot Password?
-            </Link>
-          </div>
-
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            type="submit"
-            className="w-full bg-gradient-to-r from-pink-500 to-purple-500 font-semibold rounded-lg py-2 shadow-lg hover:opacity-90 transition"
-          >
-            Login
-          </motion.button>
         </form>
 
-        <div className="text-center text-sm mt-6 text-white/80">Or continue with</div>
-
-        {/* Social Logins */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="flex justify-center gap-4 mt-4"
-        >
-          <button
-            onClick={handleSocialLogin(googleLogin)}
-            className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition"
-          >
-            <FaGoogle size={20} />
-          </button>
-          <button
-            onClick={handleSocialLogin(facebookLogin)}
-            className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition"
-          >
-            <FaFacebook size={20} />
-          </button>
-          <button
-            onClick={handleSocialLogin(githubLogin)}
-            className="bg-white/20 p-3 rounded-full hover:bg-white/30 transition"
-          >
-            <FaGithub size={20} />
-          </button>
-        </motion.div>
-
-        <p className="text-center text-sm mt-6 text-white/80">
-          Don't have an account?{" "}
-          <Link to="/signup" className="text-pink-300 hover:underline font-medium">
-            Sign up now
-          </Link>
-        </p>
-      </motion.div>
+        {/* Signup Link */}
+        <div className="mt-6 text-center">
+          <p className="text-sm text-gray-600">
+            Don't have an account?{" "}
+            <a
+              href="/signup"
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Sign up here
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

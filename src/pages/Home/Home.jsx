@@ -34,7 +34,7 @@ const Home = () => {
       <HowItWorks />
 
       <Testimonials />
-    <EnrollForm></EnrollForm>
+   
       
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaImage } from "react-icons/fa";
 
-const SkillCard = ({ skill }) => {
+const SkillCard = ({ skill, showMoreButton = false }) => {
   const [imageLoaded, setImageLoaded] = useState(true);
 
   if (!skill) return null;
@@ -51,6 +51,18 @@ const SkillCard = ({ skill }) => {
             View Details
           </Link>
         </div>
+
+        {/* Show More Button (Optional) */}
+        {showMoreButton && (
+          <div className="mt-5 text-center">
+            <Link
+              to="/skills"
+              className="inline-block bg-indigo-500 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-indigo-600 transition"
+            >
+              Show More Skills
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

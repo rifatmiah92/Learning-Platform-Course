@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Imran Khan",
+    "skill": "Python Tutor",
+    "rating": 4.9,
+    "email": "imran.python@example.com",
+    "image": "https://i.pinimg.com/736x/8d/ac/46/8dac46b6b42cd71aadf558db798da547.jpg",
+    "review": "Imran is an exceptional Python tutor who explains even the toughest concepts with clarity. His sessions are always interactive and practical, helping students gain real coding confidence.",
+    "color": "from-blue-100 via-blue-50 to-blue-100"
+  },
+  {
+    "id": 2,
+    "name": "Alex Martin",
+    "skill": "Guitar Instructor",
+    "rating": 4.8,
+    "email": "alex.guitar@example.com",
+    "image": "https://i.pinimg.com/1200x/70/14/e0/7014e01471b17ccd33fe2dd4d195c776.jpg",
+    "review": "Alex is a passionate guitar instructor with a focus on both beginners and advanced learners. His patience and dedication make learning the guitar fun and easy.",
+    "color": "from-pink-100 via-pink-50 to-pink-100"
+  },
+  {
+    "id": 3,
+    "name": "Sara Hossain",
+    "skill": "English Coach",
+    "rating": 4.6,
+    "email": "sara.english@example.com",
+    "image": "https://uk.pinterest.com/pin/364862007329429783/",
+    "review": "Sara is a wonderful English coach who builds strong communication skills through confidence-building exercises and speaking drills. Her guidance has helped many learners speak fluently in a short time.",
+    "color": "from-green-100 via-green-50 to-green-100"
+  },
+  {
+    "id": 4,
+    "name": "Rashid Ahmed",
+    "skill": "Digital Marketing",
+    "rating": 4.7,
+    "email": "rashid.marketing@example.com",
+    "image": "https://i.pinimg.com/736x/d1/b3/e2/d1b3e29d42ec2814700a3e6574ac51b3.jpg",
+    "review": "Rashid is a digital marketing specialist who knows how to grow online businesses effectively. His SEO and campaign strategies deliver real results every time.",
+    "color": "from-yellow-100 via-yellow-50 to-yellow-100"
+  },
+  {
+    "id": 5,
+    "name": "Lina Roy",
+    "skill": "Graphic Designer",
+    "rating": 4.8,
+    "email": "lina.design@example.com",
+    "image": "https://uk.pinterest.com/pin/1117103882577961437/",
+    "review": "Lina is a creative and detail-oriented graphic designer. Her designs are clean, elegant, and perfectly aligned with the client’s brand identity. She’s known for her quick delivery and professional attitude.",
+    "color": "from-purple-100 via-purple-50 to-purple-100"
+  },
+  {
+    "id": 6,
+    "name": "David Lee",
+    "skill": "Web Developer",
+    "rating": 4.9,
+    "email": "david.web@example.com",
+    "image": "https://uk.pinterest.com/pin/586453182766592584/",
+    "review": "David is a highly skilled web developer who builds fast, responsive, and modern websites. He always ensures great user experience and clean code quality.",
+    "color": "from-indigo-100 via-indigo-50 to-indigo-100"
+  },
+  {
+    "id": 7,
+    "name": "Priya Mehta",
+    "skill": "Yoga Instructor",
+    "rating": 4.8,
+    "email": "priya.yoga@example.com",
+    "image": "https://uk.pinterest.com/pin/14707136278027665/",
+    "review": "Priya’s yoga sessions are relaxing and rejuvenating. She focuses on both physical and mental well-being, helping clients find balance and inner peace.",
+    "color": "from-pink-100 via-pink-50 to-pink-100"
+  },
+  {
+    "id": 8,
+    "name": "Arif Hasan",
+    "skill": "AI Engineer",
+    "rating": 5.0,
+    "email": "arif.ai@example.com",
+    "image": "https://i.pinimg.com/736x/e3/6e/04/e36e04cb2890e4c60309359afaae0fe5.jpg",
+    "review": "Arif is an outstanding AI engineer specializing in machine learning and deep learning solutions. He simplifies complex AI systems for real-world applications.",
+    "color": "from-cyan-100 via-cyan-50 to-cyan-100"
+  },
+  {
+    "id": 9,
+    "name": "Nabila Chowdhury",
+    "skill": "Content Writer",
+    "rating": 4.7,
+    "email": "nabila.write@example.com",
+    "image": "https://uk.pinterest.com/pin/364862007329429783/",
+    "review": "Nabila writes engaging and persuasive content that connects brands with audiences. Her storytelling skills make every project impactful and memorable.",
+    "color": "from-teal-100 via-teal-50 to-teal-100"
+  }
+]
