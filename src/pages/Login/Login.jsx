@@ -1,30 +1,72 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Essential for redirection
+import auth from "../../firebase/firebase.config";
 
 /* --- SVG Icons (kept from your original) --- */
 const EmailIcon = (props) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
   </svg>
 );
 
 const LockIcon = (props) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fillRule="evenodd"
+      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 
 const EyeIcon = (props) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+    />
   </svg>
 );
 
 const EyeOffIcon = (props) => (
-  <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.996 0 1.953-.138 2.863-.401M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.243 4.243L6.228 6.228" />
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.996 0 1.953-.138 2.863-.401M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.243 4.243L6.228 6.228"
+    />
   </svg>
 );
 
@@ -33,15 +75,26 @@ const SmallDotLoader = ({ size = 4, className = "" }) => {
   // "size" is tailwind spacing units (e.g., 3,4,5 -> h-3 w-3 etc.)
   return (
     <div className={`flex items-center gap-1 ${className}`} aria-hidden>
-      <span className={`inline-block h-${size} w-${size} rounded-full animate-bounce-short bg-white/90`} />
-      <span className={`inline-block h-${size} w-${size} rounded-full animate-bounce-short animation-delay-100 bg-white/80`} />
-      <span className={`inline-block h-${size} w-${size} rounded-full animate-bounce-short animation-delay-200 bg-white/70`} />
+      <span
+        className={`inline-block h-${size} w-${size} rounded-full animate-bounce-short bg-white/90`}
+      />
+      <span
+        className={`inline-block h-${size} w-${size} rounded-full animate-bounce-short animation-delay-100 bg-white/80`}
+      />
+      <span
+        className={`inline-block h-${size} w-${size} rounded-full animate-bounce-short animation-delay-200 bg-white/70`}
+      />
     </div>
   );
 };
 
 /* --- Toast component (self-contained, animated) --- */
-const Toast = ({ show, onClose, title = "Success", message = "Logged in successfully!" }) => {
+const Toast = ({
+  show,
+  onClose,
+  title = "Success",
+  message = "Logged in successfully!",
+}) => {
   useEffect(() => {
     if (!show) return;
     const t = setTimeout(() => onClose(), 3500); // auto-dismiss after 3.5s
@@ -61,8 +114,18 @@ const Toast = ({ show, onClose, title = "Success", message = "Logged in successf
         <div className="rounded-xl bg-white/95 backdrop-blur-md border border-white/40 px-4 py-3 shadow-lg flex items-start gap-3">
           <div className="flex-shrink-0 mt-0.5">
             {/* small check icon */}
-            <svg className="h-6 w-6 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            <svg
+              className="h-6 w-6 text-green-500"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
             </svg>
           </div>
           <div className="flex-1">
@@ -75,7 +138,11 @@ const Toast = ({ show, onClose, title = "Success", message = "Logged in successf
             aria-label="Dismiss toast"
           >
             <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 01-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 01-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
             </svg>
           </button>
         </div>
@@ -133,6 +200,9 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    signInWithEmailAndPassword(auth, formData.email, formData.password);
+
     if (!validateForm()) return;
 
     setIsSubmitting(true);
@@ -157,9 +227,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4
+    <div
+      className="min-h-screen w-full flex items-center justify-center p-4
                     bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500
-                    animate-gradient-xy">
+                    animate-gradient-xy"
+    >
       <style>
         {`
         @keyframes gradient-xy {
@@ -193,7 +265,9 @@ const Login = () => {
       <div
         className={`w-full max-w-md bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20
                     text-white transition-all duration-1000 ease-out
-                    ${isMounted ? "scale-100 opacity-100" : "scale-90 opacity-0"}`}
+                    ${
+                      isMounted ? "scale-100 opacity-100" : "scale-90 opacity-0"
+                    }`}
       >
         <h2 className="text-4xl font-extrabold text-center text-white mb-2 tracking-tight">
           Welcome Back
@@ -203,7 +277,10 @@ const Login = () => {
         </p>
 
         {error && (
-          <div className="p-3 mb-4 text-sm text-white bg-red-500/50 rounded-lg border-l-4 border-red-400" role="alert">
+          <div
+            className="p-3 mb-4 text-sm text-white bg-red-500/50 rounded-lg border-l-4 border-red-400"
+            role="alert"
+          >
             {error}
           </div>
         )}
@@ -278,11 +355,17 @@ const Login = () => {
                 className="h-4 w-4 text-pink-500 focus:ring-pink-400 border-gray-300 rounded bg-white/20"
                 disabled={isSubmitting}
               />
-              <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-100">
+              <label
+                htmlFor="rememberMe"
+                className="ml-2 block text-sm text-gray-100"
+              >
                 Remember me
               </label>
             </div>
-            <a href="#" className="text-sm font-medium text-pink-300 hover:text-white transition-colors duration-200">
+            <a
+              href="#"
+              className="text-sm font-medium text-pink-300 hover:text-white transition-colors duration-200"
+            >
               Forgot password?
             </a>
           </div>
@@ -315,7 +398,10 @@ const Login = () => {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-200">
             Don't have an account?{" "}
-            <a href="#" className="font-semibold text-pink-300 hover:text-white hover:underline transition-colors duration-200">
+            <a
+              href="#"
+              className="font-semibold text-pink-300 hover:text-white hover:underline transition-colors duration-200"
+            >
               Sign up here
             </a>
           </p>

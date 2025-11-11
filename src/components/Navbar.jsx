@@ -37,7 +37,7 @@ const Navbar = () => {
             Home
           </NavLink>
           <NavLink
-            to="/my-profile"
+            to="/profile"
             className={({ isActive }) =>
               isActive
                 ? "font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 border-b-2 border-blue-500 transition-all"
@@ -96,10 +96,7 @@ const Navbar = () => {
           )}
 
           {/* Mobile toggle */}
-          <button
-            className="md:hidden ml-2"
-            onClick={() => setOpen((s) => !s)}
-          >
+          <button className="md:hidden ml-2" onClick={() => setOpen((s) => !s)}>
             {open ? <FaTimes size={22} /> : <FaBars size={22} />}
           </button>
         </div>
